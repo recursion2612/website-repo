@@ -64,25 +64,17 @@ are correct.
 - Serve the folder over HTTP.
 - Check the live GitHub Pages site after pushing.
 
-## 3. Uncommitted edits in the main checkout — OPEN
+## 3. Manual edits in the main checkout contained bugs — RESOLVED
 
-The main checkout (`C:\Users\aasha\codes\website-repo`, branch `main`) has
-uncommitted work: the manual file move from issue 1, plus some `index.html` edits.
-Those edits contain three bugs:
+Some uncommitted `index.html` edits in the main checkout had three bugs. They were
+fixed when this branch was merged into `main`:
 
-| Where | Problem | Fix |
+| Where | Problem | Fix applied |
 |---|---|---|
-| Header contact link | `href="aashaypandharpatte@gmail.com"` has no `mailto:`, so the browser treats it as a relative page link and it 404s. | `href="mailto:aashaypandharpatte@gmail.com"` |
-| Intro paragraph | Typo: "simu lation" | "simulation" |
-| `<title>` | There's a line break before `</title>`. | Keep the title on one line. |
+| Contact links | `href="aashaypandharpatte@gmail.com"` had no `mailto:`, so the browser treated it as a relative page link and it 404'd. | `href="mailto:aashaypandharpatte@gmail.com"`, in both the header and the footer |
+| Intro paragraph | Typo: "simu lation" | Kept "simulation" |
+| `<title>` | There was a line break before `</title>`. | `<title>Aashay Pandharpatte's Website</title>`, on one line |
 
-**Before merging this branch into `main`:**
-
-- The manual copies in `main`'s untracked `images/` and `certificates/` folders are
-  byte-identical to the files this branch adds. However, git refuses to merge over
-  untracked files.
-- In the main checkout, remove those two untracked folders and restore the deleted
-  top-level files (`git restore .`). Then merge.
-- Re-apply the email change, with the `mailto:` fix above, after merging.
-- `git restore .` also discards the `index.html` edits in `main`. If you want to keep
-  them, commit them first and resolve the conflict with this branch.
+**How to avoid it happening again:** commit edits in small steps on a branch, and
+look at the page in a browser before merging. When adding an email link, always
+write it as `mailto:address`.
