@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aashay — Quantum Chip Design</title>
-<meta name="description" content="Aashay — Knowledge Associate at C-DAC, Pune. Superconducting quantum chip design and quantum computing frameworks.">
+<title>Aashay Pandharpatte — Quantum Chip Design</title>
+<meta name="description" content="Aashay Pandharpatte — Knowledge Associate at C-DAC, Pune. Superconducting quantum chip design and quantum computing frameworks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
@@ -69,23 +69,6 @@
 
   .links { display: flex; gap: 20px; margin-top: 26px; font-size: 14px; }
 
-  .diagram-block { margin-top: 48px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-  .diagram-block svg { width: 240px; height: 240px; }
-  .caption { font-size: 13px; color: var(--ink-faint); font-family: 'Spectral', serif; font-style: italic; }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .ring-path {
-      stroke-dasharray: 460;
-      stroke-dashoffset: 460;
-      animation: draw 1.4s ease forwards .2s;
-    }
-    .node {
-      opacity: 0;
-      animation: appear .4s ease forwards;
-    }
-  }
-  @keyframes draw { to { stroke-dashoffset: 0; } }
-  @keyframes appear { to { opacity: 1; } }
 
   section { padding: 64px 0; border-bottom: 1px solid var(--rule); }
   section:last-of-type { border-bottom: none; }
@@ -102,12 +85,28 @@
   .entry-meta { font-size: 13px; color: var(--ink-faint); white-space: nowrap; }
   .entry p { margin: 0; color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
 
-  .cert-list { display: flex; flex-direction: column; }
-  .cert-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 16px 0; border-top: 1px solid var(--rule); flex-wrap: wrap; }
-  .cert-row:first-child { border-top: none; }
-  .cert-name { font-size: 16px; }
+  .cert-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 22px; }
+  .cert { display: flex; flex-direction: column; gap: 10px; }
+  .cert-img { display: block; border-bottom: none; }
+  .cert-img img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: var(--paper); border: 1px solid var(--rule); transition: border-color .15s ease, transform .15s ease; }
+  .cert-img:hover img, .cert-img:focus-visible img { border-color: var(--accent); transform: translateY(-2px); }
+  .cert-name { font-family: 'Spectral', serif; font-size: 16px; line-height: 1.35; color: var(--ink); }
   .cert-meta { font-size: 13px; color: var(--ink-faint); }
-  .cert-row.add { color: var(--ink-faint); font-style: italic; font-family: 'Spectral', serif; }
+  .cert-links { display: flex; gap: 14px; font-size: 13px; }
+  .cert-links a { color: var(--ink-soft); }
+
+  @media (max-width: 640px) {
+    .cert-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
+  }
+
+  .doc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .doc { display: flex; gap: 16px; align-items: baseline; padding: 16px 0; border-top: 1px solid var(--rule); }
+  .doc:first-child { border-top: none; padding-top: 0; }
+  .doc-tag { flex: 0 0 52px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  .doc-title { font-family: 'Spectral', serif; font-size: 17px; }
+  .doc-meta { display: block; font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
+  .doc-empty { margin: 0; color: var(--ink-faint); font-family: 'Spectral', serif; font-style: italic; }
+  .doc-list:has(li) + .doc-empty { display: none; }
 
   .pub-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
   .pub-list li { display: flex; gap: 12px; }
@@ -137,11 +136,12 @@
       <a href="#experience">Experience</a>
       <a href="#certificates">Certificates</a>
       <a href="#projects">Projects</a>
+      <a href="#notes">Notes &amp; talks</a>
       <a href="#publications">Publications</a>
       <a href="#contact">Contact</a>
     </nav>
 
-    <h1 class="name">Aashay</h1>
+    <h1 class="name">Aashay Pandharpatte</h1>
     <div class="role">Knowledge Associate, C-DAC Pune</div>
     <p class="lede">I design superconducting quantum chips and build the simulation frameworks that support quantum computing on HPC infrastructure.</p>
 
@@ -149,25 +149,6 @@
       <a href="mailto:your.email@example.com">your.email@example.com</a>
       <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
       <a href="https://github.com/yourusername">GitHub</a>
-    </div>
-
-    <div class="diagram-block">
-      <svg viewBox="0 0 360 360" role="img" aria-label="Diagram of a 5-qubit ring-topology transmon chip">
-        <polygon class="ring-path" points="180,50 303.6,139.8 256.4,285.2 103.6,285.2 56.4,139.8" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-        <g font-family="Karla, sans-serif" font-size="12" fill="var(--ink-soft)">
-          <circle class="node" style="animation-delay:.3s" cx="180" cy="50" r="15" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/>
-          <text x="180" y="54" text-anchor="middle">Q1</text>
-          <circle class="node" style="animation-delay:.5s" cx="303.6" cy="139.8" r="15" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/>
-          <text x="303.6" y="143.8" text-anchor="middle">Q2</text>
-          <circle class="node" style="animation-delay:.7s" cx="256.4" cy="285.2" r="15" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/>
-          <text x="256.4" y="289.2" text-anchor="middle">Q3</text>
-          <circle class="node" style="animation-delay:.9s" cx="103.6" cy="285.2" r="15" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/>
-          <text x="103.6" y="289.2" text-anchor="middle">Q4</text>
-          <circle class="node" style="animation-delay:1.1s" cx="56.4" cy="139.8" r="15" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/>
-          <text x="56.4" y="143.8" text-anchor="middle">Q5</text>
-        </g>
-      </svg>
-      <div class="caption">Fig. 1 — Ring-topology transmon layout, 5 qubits</div>
     </div>
   </header>
 
@@ -206,21 +187,85 @@
 
   <section id="certificates">
     <div class="section-head"><h2>Certificates</h2></div>
-    <div class="cert-list">
-      <div class="cert-row">
-        <div class="cert-name">[Certificate name]</div>
-        <div class="cert-meta">[Issuing organization] · [Year]</div>
-      </div>
-      <div class="cert-row">
-        <div class="cert-name">[Certificate name]</div>
-        <div class="cert-meta">[Issuing organization] · [Year]</div>
-      </div>
-      <div class="cert-row">
-        <div class="cert-name">[Certificate name]</div>
-        <div class="cert-meta">[Issuing organization] · [Year]</div>
-      </div>
-      <div class="cert-row add">+ add another certificate</div>
-    </div>
+    <ul class="cert-grid">
+      <li class="cert">
+        <a class="cert-img" href="certificates/QiskitGlobalSummerSchool2026-QuantumExcellence_Badge20260924-20-km0x09.pdf" target="_blank" rel="noopener">
+          <img src="images/qiskit-global-summer-school-2026-quantum-excellence.png" alt="Qiskit Global Summer School 2026 Quantum Excellence badge" width="1060" height="1060" loading="lazy">
+        </a>
+        <div class="cert-name">Qiskit Global Summer School 2026 — Quantum Excellence</div>
+        <div class="cert-meta">IBM · Aug 2026</div>
+        <div class="cert-links">
+          <a href="certificates/QiskitGlobalSummerSchool2026-QuantumExcellence_Badge20260924-20-km0x09.pdf" target="_blank" rel="noopener">Certificate</a>
+          <a href="https://www.credly.com/go/IBJCb4X5" target="_blank" rel="noopener">Verify</a>
+        </div>
+      </li>
+      <li class="cert">
+        <a class="cert-img" href="certificates/QiskitGlobalSummerSchool2026-QuantumFundamentals_Badge20260924-21-ak88re.pdf" target="_blank" rel="noopener">
+          <img src="images/qiskit-global-summer-school-2026-quantum-fundamenta.png" alt="Qiskit Global Summer School 2026 Quantum Fundamentals badge" width="1060" height="1060" loading="lazy">
+        </a>
+        <div class="cert-name">Qiskit Global Summer School 2026 — Quantum Fundamentals</div>
+        <div class="cert-meta">IBM · Aug 2026</div>
+        <div class="cert-links">
+          <a href="certificates/QiskitGlobalSummerSchool2026-QuantumFundamentals_Badge20260924-21-ak88re.pdf" target="_blank" rel="noopener">Certificate</a>
+          <a href="https://www.credly.com/go/Y1s2CvL6" target="_blank" rel="noopener">Verify</a>
+        </div>
+      </li>
+      <li class="cert">
+        <a class="cert-img" href="certificates/IntegratingQuantumandHigh-PerformanceComputing_Badge20260924-20-a93thz.pdf" target="_blank" rel="noopener">
+          <img src="images/integrating-quantum-and-high-performance-computing.png" alt="Integrating Quantum and High-Performance Computing badge" width="1080" height="1080" loading="lazy">
+        </a>
+        <div class="cert-name">Integrating Quantum and High-Performance Computing</div>
+        <div class="cert-meta">IBM · Apr 2026</div>
+        <div class="cert-links">
+          <a href="certificates/IntegratingQuantumandHigh-PerformanceComputing_Badge20260924-20-a93thz.pdf" target="_blank" rel="noopener">Certificate</a>
+          <a href="https://www.credly.com/go/QYgy8rO3" target="_blank" rel="noopener">Verify</a>
+        </div>
+      </li>
+      <li class="cert">
+        <a class="cert-img" href="certificates/FoundationsofQuantumErrorCorrection_Badge20260924-21-5ddtq1.pdf" target="_blank" rel="noopener">
+          <img src="images/foundations-of-quantum-error-correction.png" alt="Foundations of Quantum Error Correction badge" width="1080" height="1080" loading="lazy">
+        </a>
+        <div class="cert-name">Foundations of Quantum Error Correction</div>
+        <div class="cert-meta">IBM · Mar 2026</div>
+        <div class="cert-links">
+          <a href="certificates/FoundationsofQuantumErrorCorrection_Badge20260924-21-5ddtq1.pdf" target="_blank" rel="noopener">Certificate</a>
+          <a href="https://www.credly.com/go/t6OvjdJX" target="_blank" rel="noopener">Verify</a>
+        </div>
+      </li>
+      <li class="cert">
+        <a class="cert-img" href="certificates/IBMDesign20260924-22-gotr9u.pdf" target="_blank" rel="noopener">
+          <img src="images/basics-of-quantum-information.png" alt="Basics of Quantum Information badge" width="1080" height="1080" loading="lazy">
+        </a>
+        <div class="cert-name">Basics of Quantum Information</div>
+        <div class="cert-meta">IBM · Mar 2026</div>
+        <div class="cert-links">
+          <a href="certificates/IBMDesign20260924-22-gotr9u.pdf" target="_blank" rel="noopener">Certificate</a>
+          <a href="https://www.credly.com/badges/e7349c52-8e43-42ea-b525-31d0110b257f" target="_blank" rel="noopener">Verify</a>
+        </div>
+      </li>
+      <li class="cert">
+        <a class="cert-img" href="certificates/QiskitAdvocateMentorshipProgram2025Contributor_Badge20260924-21-tf7ag0.pdf" target="_blank" rel="noopener">
+          <img src="images/qiskit-advocate-mentorship-program-2025-contributor.png" alt="Qiskit Advocate Mentorship Program 2025 Contributor badge" width="600" height="600" loading="lazy">
+        </a>
+        <div class="cert-name">Qiskit Advocate Mentorship Program 2025 — Contributor</div>
+        <div class="cert-meta">IBM · Feb 2026</div>
+        <div class="cert-links">
+          <a href="certificates/QiskitAdvocateMentorshipProgram2025Contributor_Badge20260924-21-tf7ag0.pdf" target="_blank" rel="noopener">Certificate</a>
+          <a href="https://www.credly.com/go/SS7a5rNs" target="_blank" rel="noopener">Verify</a>
+        </div>
+      </li>
+      <li class="cert">
+        <a class="cert-img" href="certificates/QiskitGlobalSummerSchool2025-QuantumExcellence_Badge20260924-20-qyh6u1.pdf" target="_blank" rel="noopener">
+          <img src="images/qiskit-global-summer-school-2025-quantum-excellence.png" alt="Qiskit Global Summer School 2025 Quantum Excellence badge" width="1080" height="1080" loading="lazy">
+        </a>
+        <div class="cert-name">Qiskit Global Summer School 2025 — Quantum Excellence</div>
+        <div class="cert-meta">IBM · Aug 2025</div>
+        <div class="cert-links">
+          <a href="certificates/QiskitGlobalSummerSchool2025-QuantumExcellence_Badge20260924-20-qyh6u1.pdf" target="_blank" rel="noopener">Certificate</a>
+          <a href="https://www.credly.com/go/o2ujKECn" target="_blank" rel="noopener">Verify</a>
+        </div>
+      </li>
+    </ul>
   </section>
 
   <section id="projects">
@@ -235,6 +280,25 @@
       <div class="entry-head"><h3>metal-flow</h3></div>
       <p>A collaborative Python package supporting quantum chip design workflows.</p>
     </div>
+  </section>
+
+  <section id="notes">
+    <div class="section-head"><h2>Notes &amp; talks</h2></div>
+    <!--
+      To add an item: put the file in the notes/ folder, then copy this block
+      into the list below (newest first). Use "Note" or "Slides" for the tag.
+
+      <li class="doc">
+        <span class="doc-tag">Note</span>
+        <span class="doc-body">
+          <a class="doc-title" href="notes/your-file.pdf" target="_blank" rel="noopener">Title of the note</a>
+          <span class="doc-meta">Mon YYYY · One line on what it covers</span>
+        </span>
+      </li>
+    -->
+    <ul class="doc-list">
+    </ul>
+    <p class="doc-empty">Technical notes and presentation slides will be posted here.</p>
   </section>
 
   <section id="publications">
@@ -264,7 +328,7 @@
       <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
       <a href="https://github.com/yourusername">GitHub</a>
     </div>
-    <div class="copyright">© 2026 Aashay</div>
+    <div class="copyright">© 2026 Aashay Pandharpatte</div>
   </footer>
 
 </div>
