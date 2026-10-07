@@ -90,6 +90,11 @@
   .cert-img { display: block; border-bottom: none; }
   .cert-img img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: var(--paper); border: 1px solid var(--rule); transition: border-color .15s ease, transform .15s ease; }
   .cert-img:hover img, .cert-img:focus-visible img { border-color: var(--accent); transform: translateY(-2px); }
+  .cert-tile { aspect-ratio: 1; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; background: #fff; border: 1px solid var(--rule); border-left: 4px solid var(--accent); transition: border-color .15s ease, transform .15s ease; }
+  .cert-tile:hover, .cert-tile:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+  .tile-org { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  .tile-title { font-family: 'Spectral', serif; font-size: 20px; line-height: 1.25; color: var(--ink); }
+  .tile-via { font-size: 12px; color: var(--ink-faint); }
   .cert-name { font-family: 'Spectral', serif; font-size: 16px; line-height: 1.35; color: var(--ink); }
   .cert-meta { font-size: 13px; color: var(--ink-faint); }
   .cert-links { display: flex; gap: 14px; font-size: 13px; }
@@ -112,6 +117,7 @@
   .pub-list li { display: flex; gap: 12px; }
   .pub-num { color: var(--ink-faint); font-variant-numeric: tabular-nums; }
   .pub-title { color: var(--ink); }
+  .pub-authors { display: block; font-size: 14px; color: var(--ink-soft); margin-top: 2px; }
   .pub-meta { display: block; font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
 
   footer { padding: 56px 0 72px; }
@@ -188,6 +194,19 @@
   <section id="certificates">
     <div class="section-head"><h2>Certificates</h2></div>
     <ul class="cert-grid">
+      <li class="cert">
+        <a class="cert-img cert-tile" href="certificates/Coursera_QEC.pdf" target="_blank" rel="noopener" aria-label="Hands-on Quantum Error Correction with Google Quantum AI certificate (PDF)">
+          <span class="tile-org">Google Quantum AI</span>
+          <span class="tile-title">Hands-on Quantum Error Correction</span>
+          <span class="tile-via">Coursera</span>
+        </a>
+        <div class="cert-name">Hands-on Quantum Error Correction with Google Quantum AI</div>
+        <div class="cert-meta">Google Quantum AI via Coursera · Sep 2026</div>
+        <div class="cert-links">
+          <a href="certificates/Coursera_QEC.pdf" target="_blank" rel="noopener">Certificate</a>
+          <a href="https://coursera.org/verify/AZELMR6Y2OBA" target="_blank" rel="noopener">Verify</a>
+        </div>
+      </li>
       <li class="cert">
         <a class="cert-img" href="certificates/QiskitGlobalSummerSchool2026-QuantumExcellence_Badge20260924-20-km0x09.pdf" target="_blank" rel="noopener">
           <img src="images/qiskit-global-summer-school-2026-quantum-excellence.png" alt="Qiskit Global Summer School 2026 Quantum Excellence badge" width="1060" height="1060" loading="lazy">
@@ -317,15 +336,17 @@
       <li>
         <span class="pub-num">[1]</span>
         <span>
-          <span class="pub-title">Topical review on nanofabrication</span>
-          <span class="pub-meta">Submitted to IOP Nanotechnology</span>
+          <a class="pub-title" href="https://doi.org/10.1088/1361-6528/ae7df7" target="_blank" rel="noopener">A review of design principles and fabrication techniques in superconducting and trapped ion quantum devices</a>
+          <span class="pub-authors">Aashay Pandharpatte, Manpreet Singh, Amit Saxena</span>
+          <span class="pub-meta">Nanotechnology 37(28), 282001 · Jul 2026</span>
         </span>
       </li>
       <li>
         <span class="pub-num">[2]</span>
         <span>
-          <span class="pub-title">[Publication title]</span>
-          <span class="pub-meta">[Journal / conference] · [Year]</span>
+          <a class="pub-title" href="https://doi.org/10.48550/arXiv.2404.12677" target="_blank" rel="noopener">Deciding factor for detecting a particle within a subspace via dark and bright states</a>
+          <span class="pub-authors">Aashay Pandharpatte, Pritam Halder, Aditi Sen De</span>
+          <span class="pub-meta">arXiv:2404.12677 (preprint) · Apr 2024</span>
         </span>
       </li>
     </ol>
